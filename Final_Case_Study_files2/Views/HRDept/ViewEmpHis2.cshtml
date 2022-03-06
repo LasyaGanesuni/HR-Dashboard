@@ -1,0 +1,108 @@
+﻿@model Final_Case_Study.Models.AddEmpHisVM
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+    <style>
+        /*table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }*/
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 3em;
+            padding-bottom: 3em;
+        }
+
+        tr .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        tr:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="hidden" style="padding:10px">
+        <table class="center" style="width:75%;text-align:center;">
+            <thead style="background-color: #04AA6D;">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Employee
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        To Date
+                    </th>
+                    <th>
+                        Name of the Company
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rec in Model.E2lst)
+                {
+                <tr>
+                    <td>
+                        @rec.Emphid
+                    </td>
+                    <td>
+                        @rec.Ename
+                    </td>
+                    <td>
+                        @rec.SDate
+                    </td>
+                    <td>
+                        @rec.TDate
+                    </td>
+                    <td>
+                        @rec.Cname
+                    </td>
+                    <td>
+                        <div>
+                            <a href="/HRDept/DeleteHis?Emphid=@rec.Emphid" style="text-decoration: none;">Delete</a>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <a href="/HRDept/EditHis?Emphid=@rec.Emphid" style="text-decoration: none;">Edit</a>
+                            <span class="tooltiptext"> Click to Delete or Edit Record</span>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

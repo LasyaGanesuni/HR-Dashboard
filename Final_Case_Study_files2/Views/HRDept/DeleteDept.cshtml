@@ -1,0 +1,73 @@
+﻿@model Final_Case_Study.Models.DeptLVM
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+    <style>
+        /*table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }*/
+        
+        tr:hover {
+            background-color: yellow;
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        tr:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    
+    <div style="padding:10px">
+        <div style="color: #04AA6D;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">@ViewBag.Msg</div>
+        <div style="color: red;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">@ViewBag.ErrMsg</div>
+        <table class="center" style="width:30%;text-align:center;">
+            <thead style="background-color: #04AA6D;">
+                <tr>
+                    <th>
+                        Departments
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rec in Model.Dlst)
+                {
+                    <tr>
+                        <td>
+                            <div>
+                                <a href="/HRDept/Demo?Deptid=@rec.DeptId" style="text-decoration: none;">@rec.DeptName</a>
+                                <span class="tooltiptext"> Click to Delete Record</span>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+  
+</body>
+</html>

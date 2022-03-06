@@ -1,0 +1,86 @@
+﻿@model Final_Case_Study.Models.AddEmpHisVM
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddDept</title>
+    <style>
+        div.form {
+            display: block;
+            text-align: center;
+        }
+
+        form {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            /*border: 3px solid #f1f1f1;*/
+            width: 50%;
+            background-color: white;
+            padding-top: 2em;
+            padding-bottom: 4em;
+        }
+
+        /* Full-width inputs */
+        .en, .es, .mn, .eg, .dn {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <form method="post">
+            <div style="color: #04AA6D;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">@ViewBag.Msg</div>
+            <div style="color: red;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">@ViewBag.ErrMsg</div>
+            <div class="container">
+
+                <label for="ename"><b>Employee</b></label>
+                @Html.DropDownListFor(m => m.Eid, Model.ESLst, "Select Employee", new { @class = "dn" })
+
+                <label for="date"><b>Start Date</b></label>
+                @Html.TextBoxFor(m => m.SDate, new { type = "date", @class = "eg"})
+
+                <label for="date"><b>End Date</b></label>
+                @Html.TextBoxFor(m => m.TDate, new { type = "date", @class = "eg" })
+
+                <label for="dname"><b>Name of Company</b></label>
+                @Html.TextBoxFor(m => m.Cname, new { @class = "es", placeholder = "Enter the name of Company" })
+
+                <button type="submit" class="btn">Update History Details</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

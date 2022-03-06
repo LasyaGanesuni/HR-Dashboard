@@ -1,0 +1,95 @@
+﻿@model Final_Case_Study.Models.AddEmpVM
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+    <style>
+        /*table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }*/
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        tr .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        tr:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="hidden" style="padding:10px">
+        <table class="center" style="width:100%;text-align:center;">
+            <thead style="background-color: #04AA6D;">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Salary
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Name of Manager
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rec in Model.AElst)
+                {
+                    <tr>
+                        <td>
+                            @rec.Eid
+                        </td>
+                        <td>
+                            @rec.Ename
+                        </td>
+                        <td>
+                            @rec.Deptname
+                        </td>
+                        <td>
+                            @rec.Esal
+                        </td>
+                        <td>
+                            @rec.Egrade
+                        </td>
+                        <td>
+                            @rec.Mname
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

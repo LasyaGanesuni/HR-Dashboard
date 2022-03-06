@@ -1,0 +1,98 @@
+﻿@model  Final_Case_Study.Models.LoginVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        div.form {
+            display: block;
+            text-align: center;
+        }
+
+        form {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            border: 3px solid #f1f1f1;
+            width: 50%;
+            background-color:white;
+            padding-top:6em;
+            padding-bottom:4em;
+        }
+        
+        /* Full-width inputs */
+        .un, .pwd {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        
+        }
+
+            /* Add a hover effect for buttons */
+            button:hover {
+                opacity: 0.8;
+            }
+
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+            text-align: center;
+            
+            position: relative;
+        }
+
+        /* Avatar image */
+        img.avatar {
+            width: 17%;
+            border-radius: 50%;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+        }
+    </style>
+</head>
+<body style="background-color: #04AA6D; ">
+    <div class="form">
+    <form method="post">
+        <div>
+            <div class="imgcontainer">
+                <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="avatar" class="avatar" />
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "un", placeholder = "Enter Username" })
+                <label for="psw"><b>Password</b></label>
+                @Html.PasswordFor(m => m.Password, new { @class = "pwd", placeholder = "Enter Password" })
+                <button type="submit">Login</button>
+                <div style="color:red">
+                    @ViewBag.ErrMsg
+                </div>
+            </div>
+        </div>
+</form>
+</div>
+</body>
+</html>

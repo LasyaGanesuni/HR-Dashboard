@@ -1,0 +1,53 @@
+﻿@model Final_Case_Study.Models.Query2LVM
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+    <style>
+        /*table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }*/
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="hidden" style="padding:10px">
+        <table class="center" style="width:30%;text-align:center;">
+            <thead style="background-color: #04AA6D;">
+                <tr>
+                    <th>
+                        Department
+                    </th>
+                    <th>
+                        Number of Employees
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rec in Model.q2lst)
+                {
+                <tr>
+                    <td>
+                        @rec.Deptname
+                    </td>
+                    <td>
+                        @rec.cnt
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
