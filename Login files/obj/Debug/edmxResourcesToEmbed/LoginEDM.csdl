@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LasyaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LoginInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RoleId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="RoleInfo" Relationship="Self.FK_LoginInfo_RoleInfo" FromRole="LoginInfo" ToRole="RoleInfo" />
+  </EntityType>
+  <EntityType Name="RoleInfo">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="LoginInfoes" Relationship="Self.FK_LoginInfo_RoleInfo" FromRole="RoleInfo" ToRole="LoginInfo" />
+  </EntityType>
+  <Association Name="FK_LoginInfo_RoleInfo">
+    <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="1" />
+    <End Role="LoginInfo" Type="Self.LoginInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleInfo">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="LoginInfo">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LasyaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LoginInfoes" EntityType="Self.LoginInfo" />
+    <EntitySet Name="RoleInfoes" EntityType="Self.RoleInfo" />
+    <AssociationSet Name="FK_LoginInfo_RoleInfo" Association="Self.FK_LoginInfo_RoleInfo">
+      <End Role="RoleInfo" EntitySet="RoleInfoes" />
+      <End Role="LoginInfo" EntitySet="LoginInfoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
