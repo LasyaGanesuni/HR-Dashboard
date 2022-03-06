@@ -1,0 +1,67 @@
+﻿@model Login_Role_MVC.Models.AddUserVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddNewUser</title>
+</head>
+<body>
+    <h1>Add new User</h1>
+    <div>
+        <a href="/User/GetUserData">View users Data</a>
+    </div>
+    <hr />
+    <form method="post">
+    <div>
+        <table>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    UserId
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.UserId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Role
+                </td>
+                <td>
+                    @Html.DropDownListFor(m=>m.RoleId,Model.RoleLst)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Save" />
+                </td>
+
+            </tr>
+        </table>
+        <div>
+            @ViewBag.Msg
+        </div>
+    </div>
+    </form>
+</body>
+</html>

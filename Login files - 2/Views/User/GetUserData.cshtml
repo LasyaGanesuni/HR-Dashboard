@@ -1,0 +1,90 @@
+﻿@model Login_Role_MVC.Models.LoginVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html style="background-color: aliceblue">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetUserData</title>
+    <style>
+        .header {
+            padding: 10px;
+            text-align: center;
+            color:cornflowerblue;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+    <h1>
+        User Details
+    </h1>
+    </div>
+    <div>
+        <a href="/User/AddNewUser">Add new user</a>
+        
+    </div>
+    
+    <div>
+        <table style="width:100%;text-align:center;">
+            <thead style="background-color:cornflowerblue;">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        UserID
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        Role
+                    </th>
+                    <th>
+                        Delete Record
+                    </th>
+                    <th>
+                        Edit Record
+                    </th>
+                </tr>
+            </thead>
+            <tbody style="background-color:burlywood">
+                @foreach(var rec in Model.LoginLst)
+            {
+                <tr>
+                    <td>
+                        @rec.Id
+                    </td>
+                    <td>
+                        @rec.Name
+                    </td>
+                    <td>
+                        @rec.UserId
+                    </td>
+                    <td>
+                        @rec.Password
+                    </td>
+                    <td>
+                        @rec.RoleName
+                    </td>
+                    <td>
+                        <a href="/User/DeleteData?Id=@rec.Id">Delete</a>
+                    </td>
+                    <td>
+                        <a href="/User/EditData?Id=@rec.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
