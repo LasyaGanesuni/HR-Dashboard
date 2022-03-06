@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRdeptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bonus">
+    <Key>
+      <PropertyRef Name="Bonid" />
+    </Key>
+    <Property Name="Bonid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bondate" Type="date" Nullable="false" />
+    <Property Name="Bonamount" Type="bigint" Nullable="false" />
+    <Property Name="Empid" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Deptid" />
+    </Key>
+    <Property Name="Deptid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Deptname" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmpHistory">
+    <Key>
+      <PropertyRef Name="Emphisid" />
+    </Key>
+    <Property Name="Emphisid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Startdate" Type="date" Nullable="false" />
+    <Property Name="Todate" Type="date" Nullable="false" />
+    <Property Name="NameOfCompany" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Empid" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Empid" />
+    </Key>
+    <Property Name="Empid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Empname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Empgrade" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Empsalary" Type="bigint" Nullable="false" />
+    <Property Name="Deptid" Type="bigint" Nullable="false" />
+    <Property Name="Managername" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginDetails">
+    <Key>
+      <PropertyRef Name="Loginid" />
+    </Key>
+    <Property Name="Loginid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bonus_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Bonus" Type="Self.Bonus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Empid" />
+      </Principal>
+      <Dependent Role="Bonus">
+        <PropertyRef Name="Empid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpHistory_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmpHistory" Type="Self.EmpHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Empid" />
+      </Principal>
+      <Dependent Role="EmpHistory">
+        <PropertyRef Name="Empid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Deptid" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Deptid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HRdeptModelStoreContainer">
+    <EntitySet Name="Bonus" EntityType="Self.Bonus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmpHistory" EntityType="Self.EmpHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginDetails" EntityType="Self.LoginDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bonus_Employee" Association="Self.FK_Bonus_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Bonus" EntitySet="Bonus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpHistory_Employee1" Association="Self.FK_EmpHistory_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmpHistory" EntitySet="EmpHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

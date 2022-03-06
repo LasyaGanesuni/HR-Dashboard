@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HRdeptModelStoreContainer" CdmEntityContainer="HRdeptEntities">
+    <EntitySetMapping Name="Bonus">
+      <EntityTypeMapping TypeName="HRdeptModel.Bonu">
+        <MappingFragment StoreEntitySet="Bonus">
+          <ScalarProperty Name="Bonid" ColumnName="Bonid" />
+          <ScalarProperty Name="Bondate" ColumnName="Bondate" />
+          <ScalarProperty Name="Bonamount" ColumnName="Bonamount" />
+          <ScalarProperty Name="Empid" ColumnName="Empid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="HRdeptModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="Deptid" ColumnName="Deptid" />
+          <ScalarProperty Name="Deptname" ColumnName="Deptname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmpHistories">
+      <EntityTypeMapping TypeName="HRdeptModel.EmpHistory">
+        <MappingFragment StoreEntitySet="EmpHistory">
+          <ScalarProperty Name="Emphisid" ColumnName="Emphisid" />
+          <ScalarProperty Name="Startdate" ColumnName="Startdate" />
+          <ScalarProperty Name="Todate" ColumnName="Todate" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Empid" ColumnName="Empid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="HRdeptModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Empid" ColumnName="Empid" />
+          <ScalarProperty Name="Empname" ColumnName="Empname" />
+          <ScalarProperty Name="Empgrade" ColumnName="Empgrade" />
+          <ScalarProperty Name="Empsalary" ColumnName="Empsalary" />
+          <ScalarProperty Name="Deptid" ColumnName="Deptid" />
+          <ScalarProperty Name="Managername" ColumnName="Managername" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginDetails">
+      <EntityTypeMapping TypeName="HRdeptModel.LoginDetail">
+        <MappingFragment StoreEntitySet="LoginDetails">
+          <ScalarProperty Name="Loginid" ColumnName="Loginid" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

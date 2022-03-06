@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRdeptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bonu">
+    <Key>
+      <PropertyRef Name="Bonid" />
+    </Key>
+    <Property Name="Bonid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bondate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Bonamount" Type="Int64" Nullable="false" />
+    <Property Name="Empid" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Bonus_Employee" FromRole="Bonus" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Deptid" />
+    </Key>
+    <Property Name="Deptid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Deptname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmpHistory">
+    <Key>
+      <PropertyRef Name="Emphisid" />
+    </Key>
+    <Property Name="Emphisid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Startdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Todate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NameOfCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Empid" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_EmpHistory_Employee1" FromRole="EmpHistory" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Empid" />
+    </Key>
+    <Property Name="Empid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Empname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Empgrade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Empsalary" Type="Int64" Nullable="false" />
+    <Property Name="Deptid" Type="Int64" Nullable="false" />
+    <Property Name="Managername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Bonus" Relationship="Self.FK_Bonus_Employee" FromRole="Employee" ToRole="Bonus" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="EmpHistories" Relationship="Self.FK_EmpHistory_Employee1" FromRole="Employee" ToRole="EmpHistory" />
+  </EntityType>
+  <EntityType Name="LoginDetail">
+    <Key>
+      <PropertyRef Name="Loginid" />
+    </Key>
+    <Property Name="Loginid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bonus_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Bonus" Type="Self.Bonu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Empid" />
+      </Principal>
+      <Dependent Role="Bonus">
+        <PropertyRef Name="Empid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Deptid" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Deptid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpHistory_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmpHistory" Type="Self.EmpHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Empid" />
+      </Principal>
+      <Dependent Role="EmpHistory">
+        <PropertyRef Name="Empid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HRdeptEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bonus" EntityType="Self.Bonu" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="EmpHistories" EntityType="Self.EmpHistory" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="LoginDetails" EntityType="Self.LoginDetail" />
+    <AssociationSet Name="FK_Bonus_Employee" Association="Self.FK_Bonus_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Bonus" EntitySet="Bonus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpHistory_Employee1" Association="Self.FK_EmpHistory_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmpHistory" EntitySet="EmpHistories" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
